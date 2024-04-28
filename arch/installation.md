@@ -53,10 +53,17 @@ Mount the various partitions and setup swap memory:
 Exit the chroot environment with `exit` and unmount all partitions with `umount -R /mnt` and ensure no partitions are "busy". Restart the machine with `reboot`, remove installation medium, and login into the new system with root account.
 
 ## Users & Graphical Interface
-Create a new underprivillaged user (ex. _kameron_) to protect root access, and give it a password:
+Create a new underprivillaged user (ex. _kameron_) to protect root access, and give it a password
 ```shell
+pacman -S sudo
 useradd -m kameron
+sudo adduser kameron sudo
 passwd kameron
+```
+
+Optionally, also add the user to the _sudoer_ group so that they can access root privillages (important for the main 'adminstrative' account). First install _sudo_ with `pacman -S sudo` and edit the file `/etc/sudoers` by adding the following line in the _User privilege specification_ section (replace USER with user's name):
+```
+USER ALL=(ALL:ALL) ALL
 ```
 
 Start and enable the NetworkManager:
@@ -81,8 +88,12 @@ systemctl enable ssdm
 reboot now
 ```
 
-## Themes
-
 ## Applications
 
 ### Steam
+Enable the _multilib_ repository by uncommenting the following lines in `/etc/pacman.conf`:
+```conf
+[multilib]
+Include = /etc/pacman.d/mirrorlist
+```
+
