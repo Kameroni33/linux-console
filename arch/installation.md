@@ -47,9 +47,42 @@ Mount the various partitions and setup swap memory:
 6. `grub-install --target=x86_64-efi --efi-directory=/boot/ --bootloader-id=grub_uefi --recheck` to install UEFI bootloader
 7. `grub-mkconfig -o /boot/grub/grub.cfg` to generate GRUB boot configuration
 8. Use `psswd` to set the root password
+9. `pacman -S networkmanager` to install NetowrkManager for handling internet connection
+10. `echo hostname > /etc/resolv.conf` to configure the hostname (replace _hostname_ with whatever name you want)
 
 Exit the chroot environment with `exit` and unmount all partitions with `umount -R /mnt` and ensure no partitions are "busy". Restart the machine with `reboot`, remove installation medium, and login into the new system with root account.
 
 ## Users & Graphical Interface
+Create a new underprivillaged user (ex. _kameron_) to protect root access, and give it a password:
+```shell
+useradd -m kameron
+passwd kameron
+```
 
-## Steam
+Start and enable the NetworkManager:
+```shell
+systemctl start NetworkManager
+systemctl enable NetworkManager
+```
+
+Download plasma desktop environment for KDE (or another GUI if you prefer) with the folling (all defaults):
+```shell
+pacman -S plasma plasma-workspace
+```
+
+For default KDE applications:
+```shell
+pacman -S kde-applications
+```
+
+Enable the simple desktop display manager (SDDM) and reboot:
+```shell
+systemctl enable ssdm
+reboot now
+```
+
+## Themes
+
+## Applications
+
+### Steam
