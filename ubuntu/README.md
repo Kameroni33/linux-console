@@ -2,6 +2,10 @@
 
 ## 1 - Installation
 
+Download the latest version of [Ubunutu LTS](https://ubuntu.com/download/desktop).
+
+<!-- TODO: add instructions for flashing and installation -->
+
 ## 2 - Setup
 
 ### 2.1 - Git Repository
@@ -25,6 +29,8 @@ git clone https://github.com/Kameroni33/linux-console.git
 ### 2.2 - RAID Configuration
 
 ### 2.3 - Samba NAS
+
+### 2.4 - ... VPN
 
 ### 2.4 - Docker
 
@@ -99,8 +105,13 @@ sudo apt update
 
 Once installed, run the Steam application and accept all console prompts to install requiired dependencies.
 
+### 2.6 - Minecraft
 
-### 2.6 - VPN
+Install [Minecraft](https://www.minecraft.net/en-us) Launcher for Debian + Debian Based from the [official site](https://www.minecraft.net/en-us/download). Once installed run the `.deb` file and install via the Software Installer application.
+
+<!-- TODO: mods, shaders, etc... -->
+
+To setup a minecraft server, see [dockercraft](https://github.com/Kameroni33/dockercraft).
 
 ## 3 - Customization
 
