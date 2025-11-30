@@ -95,13 +95,16 @@ Edit `/etc/samba/smb.conf` and add the following:
    force directory mode = 0770
 ```
 
-Restart samba and update permissions.
+Update permissions and restart samba.
 ```bash
+sudo groupadd storage
+sudo usermod -aG storage sambauser
+sudo usermod -aG storage $USER
+sudo chown -R sambauser:storage /mnt/storage
+sudo chmod 2770 /mnt/storage
+
 sudo systemctl restart smbd
 sudo systemctl enable smbd
-
-sudo chown -R sambauser:sambauser /mnt/storage
-sudo chmod -R 775 /mnt/storage
 ```
 
 ### 2.4 - ... VPN
